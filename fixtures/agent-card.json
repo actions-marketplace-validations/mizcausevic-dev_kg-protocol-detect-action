@@ -1,0 +1,15 @@
+{
+  "agent_card_version": "0.1",
+  "agent": { "id": "demo", "name": "Demo", "version": "1.0.0", "provider": "x", "description": "x" },
+  "capabilities": {
+    "primary_purpose": "demo",
+    "models_used": [{ "model": "gpt-4o-mini" }],
+    "tools": [],
+    "max_context_tokens": 8192,
+    "memory_persistence": "none",
+    "autonomy_level": "assistive"
+  },
+  "refusal_taxonomy": [],
+  "deployment": {},
+  "safety_posture": {}
+}

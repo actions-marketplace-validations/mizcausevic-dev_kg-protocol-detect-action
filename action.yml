@@ -1,0 +1,39 @@
+name: "Kinetic Gain Protocol Detect"
+description: "Scans a directory of JSON documents, identifies which Kinetic Gain Suite protocol each belongs to (AgentCard, MCP Tool Card, prompt-provenance, evidence-bundle, OTel GenAI OTLP, mcp-tools-list), and writes a summary + optional fail-on-unknown gate."
+author: "mizcausevic-dev"
+branding:
+  icon: "search"
+  color: "purple"
+
+inputs:
+  scan-dir:
+    description: "Directory to scan for JSON documents. Files are walked recursively."
+    required: true
+  fail-on-unknown:
+    description: "Fail the run if any JSON file in scan-dir is identified as protocol='unknown' (default 'false')."
+    required: false
+    default: "false"
+  min-confidence:
+    description: "Minimum confidence required to NOT trigger fail-on-unknown. One of 'high' | 'medium' | 'low'. Default 'low' (any positive detection counts)."
+    required: false
+    default: "low"
+  comment-on-pr:
+    description: "Post the summary as a PR comment. 'auto' (default) posts only on pull_request events; 'true' / 'false' force the behavior."
+    required: false
+    default: "auto"
+  github-token:
+    description: "Token used to post the PR comment (defaults to GITHUB_TOKEN)."
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  file-count:
+    description: "Number of JSON files scanned."
+  unknown-count:
+    description: "Number of files identified as protocol='unknown' (or below min-confidence)."
+  summary-json:
+    description: "Compact JSON of { path, protocol, version, confidence } per file."
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
