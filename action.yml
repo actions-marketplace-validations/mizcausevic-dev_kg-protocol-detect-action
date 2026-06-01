@@ -1,5 +1,5 @@
 name: "Kinetic Gain Protocol Detect"
-description: "Scans a directory of JSON documents, identifies which Kinetic Gain Suite protocol each belongs to (AgentCard, MCP Tool Card, prompt-provenance, evidence-bundle, OTel GenAI OTLP, mcp-tools-list), and writes a summary + optional fail-on-unknown gate."
+description: "Scan a directory of JSON docs and identify which Kinetic Gain Suite protocol each belongs to."
 author: "mizcausevic-dev"
 branding:
   icon: "search"
